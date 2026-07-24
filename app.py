@@ -31,16 +31,16 @@ print(f"Total Embeddings: {len(embeddings)}")
 if len(embeddings) > 0:
     print(f"Embedding Dimension: {len(embeddings[0])}")
 
-    print("\n========== Semantic Search ==========\n")
+#     print("\n========== Semantic Search ==========\n")
 
-query = input("Ask a question: ")
+# query = input("Ask a question: ")
 
-results = search_documents(query)
+# results = search_documents(query)
 
-print("\nMost Relevant Chunks:\n")
+# print("\nMost Relevant Chunks:\n")
 
-for i, document in enumerate(results["documents"][0], start=1):
-    print(f"Result {i}:")
-    print(document)
-    print("-" * 50)
+# for i, document in enumerate(results["documents"][0], start=1):
+#     print(f"Result {i}:")
+#     print(document)
+#     print("-" * 50)
 
