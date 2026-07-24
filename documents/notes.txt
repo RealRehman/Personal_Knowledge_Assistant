@@ -1,0 +1,5 @@
+Python is fun.
+
+This is my first AI project.
+
+I am learning Retrieval-Augmented Generation (RAG).
