@@ -1,5 +1,6 @@
 from utils.document_reader import read_documents
 from utils.chunking import chunk_text
+from utils.embeddings import create_embeddings
 
 # Read all documents
 documents = read_documents()
@@ -16,21 +17,13 @@ for i, document in enumerate(documents, start=1):
     # Add all chunks to the master list
     all_chunks.extend(chunks)
 
-    # Print chunks of the current document
-    for j, chunk in enumerate(chunks, start=1):
-        print(f"Chunk {j}:")
-        print(chunk)
-        print("-" * 40)
+# Create embeddings AFTER all chunks are collected
+embeddings = create_embeddings(all_chunks)
 
-print("\n========================================")
+print("\n========== Embedding Summary ==========")
 print(f"Total Documents: {len(documents)}")
 print(f"Total Chunks: {len(all_chunks)}")
-print("========================================")
+print(f"Total Embeddings: {len(embeddings)}")
 
-# Optional: Print first 5 chunks
-print("\nFirst 5 Chunks:\n")
-
-for i, chunk in enumerate(all_chunks[:5], start=1):
-    print(f"Chunk {i}:")
-    print(chunk)
-    print("-" * 40)
+if len(embeddings) > 0:
+    print(f"Embedding Dimension: {len(embeddings[0])}")
