@@ -1,14 +1,34 @@
 from pathlib import Path
-
-documents_path = Path("documents")
+from pypdf import PdfReader
 
 SUPPORTED_FILES = [".pdf", ".txt", ".docx"]
 
-for file in documents_path.iterdir():
-    if file.suffix in SUPPORTED_FILES:
 
-        print(f"\n----- {file.name} -----")
+def read_documents():
+    documents_path = Path("documents")
 
-        if file.suffix == ".txt":
-            content = file.read_text()
-            print(content)
+    for file in documents_path.iterdir():
+
+        if file.suffix in SUPPORTED_FILES:
+
+            print(f"\n----- {file.name} -----")
+
+            if file.suffix == ".txt":
+                content = file.read_text()
+                print(content)
+
+
+def read_pdf():
+    pdf = PdfReader("documents/resume.pdf")
+
+    print(f"Total pages: {len(pdf.pages)}")
+
+    first_page = pdf.pages[0]
+
+    text = first_page.extract_text()
+
+    print("\n----- First Page -----\n")
+    print(text)
+
+read_documents()
+read_pdf()
