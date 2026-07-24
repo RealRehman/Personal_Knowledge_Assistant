@@ -7,6 +7,8 @@ SUPPORTED_FILES = [".pdf", ".txt", ".docx"]
 def read_documents():
     documents_path = Path("documents")
 
+    documents = []
+
     for file in documents_path.iterdir():
 
         if file.suffix in SUPPORTED_FILES:
@@ -15,21 +17,30 @@ def read_documents():
 
             if file.suffix == ".txt":
                 content = file.read_text()
-                print(content)
+                documents.append(content)
 
             elif file.suffix == ".pdf":
-                read_pdf(file)
+                pdf_text = read_pdf(file)
+                documents.append(pdf_text)
+    return documents
 
 
 def read_pdf(file_path):
     pdf = PdfReader(file_path)
 
-    print(f"Total pages: {len(pdf.pages)}")
 
-    first_page = pdf.pages[0]
+    all_text = ""
 
-    text = first_page.extract_text()
+    for page in pdf.pages:
+        text = page.extract_text()
+        if text:  
+            all_text += text + "\n"
 
-    print(text)
+    return all_text
 
-read_documents()
+    # first_page = pdf.pages[0]
+
+    # text = first_page.extract_text()
+
+    # return text
+

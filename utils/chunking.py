@@ -3,12 +3,12 @@ def chunk_text(text):
 
     chunk_size = 2
 
+    chunks = []
+
     for i in range(0, len(lines), chunk_size):
 
         chunk = lines[i:i + chunk_size]
 
-        print("----- Chunk -----")
+        chunks.append("\n".join(chunk))
 
-        print("\n".join(chunk))
-
-        print()
+    return chunks
