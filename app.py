@@ -17,9 +17,12 @@ def read_documents():
                 content = file.read_text()
                 print(content)
 
+            elif file.suffix == ".pdf":
+                read_pdf(file)
 
-def read_pdf():
-    pdf = PdfReader("documents/resume.pdf")
+
+def read_pdf(file_path):
+    pdf = PdfReader(file_path)
 
     print(f"Total pages: {len(pdf.pages)}")
 
@@ -27,8 +30,6 @@ def read_pdf():
 
     text = first_page.extract_text()
 
-    print("\n----- First Page -----\n")
     print(text)
 
 read_documents()
-read_pdf()
